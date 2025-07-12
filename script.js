@@ -27,21 +27,46 @@ function drawScribbleText(text, x, y, font, color, times = 5, offset = 2) {
 }
 
 function drawBrat() {
+  // 1. Setup Canvas and Styles
   ctx.fillStyle = bgColor.value || "#ffffff";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = textColor.value || "#000000";
+
   const text = textInput.value || "BRAT";
-  // Calculate auto font size
-  const autoFontSize = getAutoFontSize(
-    text,
-    fontFamily.value,
-    canvas.width,
-    parseInt(fontSize.value)
-  );
-  const font = `bold ${autoFontSize}px ${fontFamily.value}`;
+  const padding = 40;
+  const maxWidth = canvas.width - padding;
+
+  // 2. Set Font Size to a fixed value from the input, preventing it from shrinking
+  const currentFontSize = parseInt(fontSize.value);
+  const font = `bold ${currentFontSize}px ${fontFamily.value}`;
   ctx.font = font;
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
+
+  const lineHeight = currentFontSize * 1.2;
+  const words = text.split(' ');
+  let line = '';
+  const lines = [];
+
+  // 3. Logic to wrap text into lines based on maxWidth
+  words.forEach(word => {
+    const testLine = line + word + ' ';
+    const metrics = ctx.measureText(testLine);
+    const testWidth = metrics.width;
+    if (testWidth > maxWidth && line !== '') {
+      lines.push(line.trim());
+      line = word + ' ';
+    } else {
+      line = testLine;
+    }
+  });
+  lines.push(line.trim());
+
+  // 4. Calculate starting Y to center the text block vertically
+  const totalTextHeight = lines.length * lineHeight;
+  let startY = (canvas.height - totalTextHeight) / 2 + (lineHeight / 2);
+
+  // 5. Set up fill style (for solid color or gradient)
   let fillStyle = ctx.fillStyle;
   if (gradientEffect && gradientEffect.checked) {
     const grad = ctx.createLinearGradient(0, 0, canvas.width, 0);
@@ -50,31 +75,30 @@ function drawBrat() {
     fillStyle = grad;
   }
   ctx.fillStyle = fillStyle;
-  if (scribbleEffect && scribbleEffect.checked) {
-    drawScribbleText(
-      text,
-      canvas.width / 2,
-      canvas.height / 2,
-      font,
-      ctx.fillStyle,
-      scribbleTimes ? parseInt(scribbleTimes.value) : 7,
-      scribbleOffset ? parseInt(scribbleOffset.value) : 4
-    );
-  } else {
-    ctx.fillText(text, canvas.width / 2, canvas.height / 2);
-  }
+
+  // 6. Draw each line
+  lines.forEach((line, index) => {
+    const y = startY + (index * lineHeight);
+    if (scribbleEffect && scribbleEffect.checked) {
+      drawScribbleText(
+        line,
+        canvas.width / 2,
+        y,
+        font,
+        ctx.fillStyle,
+        scribbleTimes ? parseInt(scribbleTimes.value) : 7,
+        scribbleOffset ? parseInt(scribbleOffset.value) : 4
+      );
+    } else {
+      ctx.fillText(line, canvas.width / 2, y);
+    }
+  });
 }
 
-function getAutoFontSize(text, fontFamily, maxWidth, maxFontSize, minFontSize = 10, padding = 40) {
-  let fontSize = maxFontSize;
-  ctx.font = `bold ${fontSize}px ${fontFamily}`;
-  while (ctx.measureText(text).width > (maxWidth - padding) && fontSize > minFontSize) {
-    fontSize -= 2;
-    ctx.font = `bold ${fontSize}px ${fontFamily}`;
-  }
-  return fontSize;
-}
+// The getAutoFontSize function has been removed as it is no longer needed.
 
+
+// --- Event Listeners ---
 [
   textInput,
   bgColor,
@@ -83,7 +107,8 @@ function getAutoFontSize(text, fontFamily, maxWidth, maxFontSize, minFontSize = 
   fontFamily,
   scribbleEffect,
   scribbleTimes,
-  scribbleOffset
+  scribbleOffset,
+  gradientEffect
 ].forEach(el => el && el.addEventListener('input', drawBrat));
 
 if (downloadBtn) {
@@ -95,4 +120,5 @@ if (downloadBtn) {
   });
 }
 
+// Initial draw
 drawBrat();

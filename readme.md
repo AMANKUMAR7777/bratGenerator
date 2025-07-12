@@ -1,0 +1,1 @@
+Brat Generator is a fun and stylish tool to create your own bold, bratty poster. 🎨 Type your text, customize colors, adjust font size, and enjoy modern effects like glowing shadows, bold outlines, and playful scribble accents. Once it’s perfect—download it instantly as a PNG. 💚

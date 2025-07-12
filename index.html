@@ -12,7 +12,7 @@
     <div id="main">
         <nav>
             <div class="left">
-                <h1>Brat Generator</h1>
+                <img src="icon.ico" >
             </div>
 
             <div class="right">
@@ -33,10 +33,11 @@
                 <label>Font size: <input type="range" id="fontSize" min="20" max="200" value="100"></label>
                 <label>Font family:
                   <select id="fontFamily">
+                    
+                    <option value="Roboto">Roboto</option>
                     <option value="Arial">Arial</option>
                     <option value="Figtree">Figtree</option>
                     <option value="Oswald">Oswald</option>
-                    <option value="Roboto">Roboto</option>
                     <option value="Syne">Syne</option>
                     <option value="Comic Sans MS">Comic Sans MS</option>
                     <option value="Impact">Impact</option>
@@ -44,7 +45,7 @@
                   </select>
                 </label>
                 <label>
-                  <input type="checkbox" id="scribbleEffect">
+                  <input type="checkbox" id="scribbleEffect" value="true" checked>
                   Scribble Effect
                 </label>
                 <label>
@@ -59,7 +60,7 @@
                 <button id="downloadBtn">Download</button>
             </div>
 
-            <input type="text" id="textInput" placeholder="Enter text here.." value="BRAT">
+            <input type="text" id="textInput" placeholder="Enter text here.." value="Different font, same brat.">
         </div>
 
 

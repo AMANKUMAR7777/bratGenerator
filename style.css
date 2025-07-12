@@ -15,12 +15,18 @@ body{
     width: 100%;
 }
 
+
 nav{
     border: 2px solid red;
     height: 8vh;
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     align-items: center;
+}
+.screen{
+    border: 2px solid blue;
+    width: 100%;
+    height: auto;
 }
 
 nav a{
@@ -29,4 +35,45 @@ nav a{
     font-size: 2rem;
     padding: 0 1rem;
     font-family: var(--roboto);
+}
+
+nav .left h1{
+    font-family: var(--roboto);
+    color: black;
+    padding: 0 1rem;
+}
+
+.bottom{
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+    border: 2px solid blue;
+    width: 100%;
+    height: 26vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.bottom .controls{
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.4rem;
+    font-family: var(--figtree);
+    gap: 4rem;
+}
+.bottom #textInput{
+    height: 3rem;
+    width: 40rem;
+    font-size: 1.4rem;
+    font-family: var(--figtree);
+    padding: 0.5rem;
+}
+
+canvas{
+    border: 2px solid red;    
+    display: block;
+    margin: auto auto;
 }

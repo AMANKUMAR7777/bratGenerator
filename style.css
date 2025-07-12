@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Syne:wght@400..800&display=swap');
+
+:root{
+    --roboto: 'Roboto', sans-serif;
+    --figtree: 'Figtree', sans-serif;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    width: 100%;
+}
+
+nav{
+    border: 2px solid red;
+    height: 8vh;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+
+nav a{
+    text-decoration: none;
+    color: black;
+    font-size: 2rem;
+    padding: 0 1rem;
+    font-family: var(--roboto);
+}

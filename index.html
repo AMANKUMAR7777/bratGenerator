@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" typ="text/css" href="style.css">
+</head>
+<body>
+    <div id="main">
+        <nav>
+            <div class="left">
+                <h1>Brat Generator</h1>
+            </div>
+
+            <div class="right">
+                <a href="#">Home</a>
+                <a href="#">About us</a>
+                <a href="#">Contact</a>
+            </div>
+
+        </nav>
+        <canvas id="canvas" height="600" width="900"></canvas>
+
+        <div class="bottom">
+
+            <div class="controls">
+                <label>Background color: <input type="color" id="bgColor"></label>
+                <label>Text color: <input type="color" id="textColor"></label>
+                <label>Font size: <input type="range" id="fontSize" min="20" max="200" value="100"></label>
+            </div>
+
+            <input type="text" id="textInput" placeholder="Enter text here..">
+        </div>
+    </div>
+</body>
+</html>
